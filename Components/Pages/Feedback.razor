@@ -8,9 +8,9 @@
 <div class="Row">
     <div>
         <p class="m-0">Автор</p>
-        <input type="text" @bind="@SupportiveFields.SupAuthor"/>
+        <input type="text" @bind="@dto.SupAuthor"/>
         <p class="m-0">Текст отзыва</p>
-        <input type="text" @bind="@SupportiveFields.SupMessage" placeholder="Введите текст"/>
+        <input type="text" @bind="@dto.SupMessage" placeholder="Введите текст"/>
 
         <div class="Column" style="padding-top: 4px; margin: 2px">
             <input class="Add" type="button" value="Добавить отзыв" @onclick="() => SerializationService.AddFeedback(new Models.Feedback(SupportiveFields.SupAuthor, SupportiveFields.SupMessage, SupportiveFields.SupStarsCount))"/>
@@ -21,11 +21,11 @@
 
     <div style="padding-left: 10px">
         <p class="m-0">Оценка</p>
-        <p class="m-0"><input type="radio" name="stars" value="onestar" @onclick="() => SupportiveFields.SetValue(1)"/>⭐</p>
-        <p class="m-0"><input type="radio" name="stars" value="twostar" @onclick="() => SupportiveFields.SetValue(2)"/>⭐⭐</p>
-        <p class="m-0"><input type="radio" name="stars" value="threestar" @onclick="() => SupportiveFields.SetValue(3)"/>⭐⭐⭐</p>
-        <p class="m-0"><input type="radio" name="stars" value="fourstar" @onclick="() => SupportiveFields.SetValue(4)"/>⭐⭐⭐⭐</p>
-        <p class="m-0"><input type="radio" name="stars" value="fivestar" @onclick="() => SupportiveFields.SetValue(5)"/>⭐⭐⭐⭐⭐</p>
+        <p class="m-0"><input type="radio" name="stars" value="onestar" @onclick="() => dto.SetValue(1)"/>⭐</p>
+        <p class="m-0"><input type="radio" name="stars" value="twostar" @onclick="() => dto.SetValue(2)"/>⭐⭐</p>
+        <p class="m-0"><input type="radio" name="stars" value="threestar" @onclick="() => dto.SetValue(3)"/>⭐⭐⭐</p>
+        <p class="m-0"><input type="radio" name="stars" value="fourstar" @onclick="() => dto.SetValue(4)"/>⭐⭐⭐⭐</p>
+        <p class="m-0"><input type="radio" name="stars" value="fivestar" @onclick="() => dto.SetValue(5)"/>⭐⭐⭐⭐⭐</p>
     </div>
 </div>
 
@@ -46,6 +46,8 @@
 
 
 @code {
+    protected SupportiveFields dto = new();
+    
     protected override void OnInitialized()
     {
         SerializationService.OpenFile();
